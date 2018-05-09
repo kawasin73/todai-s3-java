@@ -16,7 +16,11 @@
 
 ### lesson3
 
-再起
+再帰
+
+### lesson4
+
+ピボット選択Gauss消去法
 
 ## LICENSE
 
