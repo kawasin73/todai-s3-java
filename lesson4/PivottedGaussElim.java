@@ -51,20 +51,23 @@ public class PivottedGaussElim {
 
         // move forward
         for (int k = 0; k < N - 1; k++) {
-            // change pivot
-//            j = i;
-//            max =  Math.abs(a[j][i]);
-//            for (int k = 0; k <N-1;k++) {
-//                if (Math.abs(a[k][i]) > max) {
-//                    j = k;
-//                    max = Math.abs(a[j][i]);
-//                }
-//            }
-//            tmp = a[i];
+            // switch max pivot
+            int mi = k;
+            double max = Math.abs(a[k][k]);
+            for (int i = k + 1; i < N; i++) {
+                if (Math.abs(a[i][k]) > max) {
+                    mi = i;
+                    max = Math.abs(a[i][k]);
+                }
+            }
+            if (mi != k) {
+                double[] tmp = a[k];
+                a[k] = a[mi];
+                a[mi] = tmp;
+            }
 
             pivot = a[k][k];
             if (Math.abs(pivot) < TINY) {
-                // TODO: change pivot
                 status = 9;
                 return;
             }
