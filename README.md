@@ -22,6 +22,10 @@
 
 ピボット選択Gauss消去法
 
+### lesson5
+
+スタックとキュー
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。
