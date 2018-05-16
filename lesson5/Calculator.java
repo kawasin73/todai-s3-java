@@ -54,7 +54,6 @@ public class Calculator {
             // stack の先頭に格納されるプログラムを以下に書きます.
             if (isNumber(token)) {
                 stack.push(token);
-                continue;
             } else if (isOperator(token)) {
                 String v1 = stack.pop();
                 String v2 = stack.pop();
@@ -82,7 +81,6 @@ public class Calculator {
             // うなプログラムを以下に書きます.
             if (isNumber(token)) {
                 stack.push(token);
-                continue;
             } else if (isOperator(token)) {
                 String v1 = stack.pop();
                 String v2 = stack.pop();

@@ -62,10 +62,10 @@ public class Queue {
         // ここにdoubleCapacityの処理を書いてください
         int newCap = capacity * 2;
         String[] newDataSet = new String[newCap];
-        for (int i = 0; i < capacity; i++) {
-            newDataSet[i] = remove();
+        for (int i = 0; i < size; i++) {
+            newDataSet[i] = dataSet[front];
+            front = next(front);
         }
-        size = capacity;
         front = 0;
         rear = capacity - 1;
         dataSet = newDataSet;
