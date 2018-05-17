@@ -117,7 +117,10 @@ public class Calculator {
                     case "/":
                         String v1 = stack.pop();
                         String v2 = st.nextToken();
-                        String result = String.format("%s %s %s", v2, v1, token);
+                        if (v2.equals("(")) {
+                            v2 = conv(st);
+                        }
+                        String result = String.format("%s %s %s", v1, v2, token);
                         stack.push(result);
                 }
             } else if (token.equals("(")) {
@@ -136,7 +139,7 @@ public class Calculator {
         while (!stack.peek().equals("")) {
             String token = stack.pop();
             if (!isOperator(token)) {
-                System.out.println("invalid token in reduce phase");
+                System.out.println("invalid token in reduce phase" + result + " : " + token);
                 break;
             }
             String v = stack.pop();
