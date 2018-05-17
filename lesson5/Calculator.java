@@ -93,4 +93,55 @@ public class Calculator {
 
         return stack.pop();
     }
+
+    // 中置記法の数式 を を逆ポーランド記法に変換する
+    public String convToF(String equation) {
+        StringTokenizer st = new StringTokenizer(equation);
+
+        return conv(st);
+    }
+
+    private String conv(StringTokenizer st) {
+        Stack stack = new Stack();
+
+        while (st.hasMoreElements()) {
+            String token = st.nextToken();
+
+            if (isOperator(token)) {
+                switch (token) {
+                    case "+":
+                    case "-":
+                        stack.push(token);
+                        break;
+                    case "*":
+                    case "/":
+                        String v1 = stack.pop();
+                        String v2 = st.nextToken();
+                        String result = String.format("%s %s %s", v2, v1, token);
+                        stack.push(result);
+                }
+            } else if (token.equals("(")) {
+                stack.push(conv(st));
+            } else if (token.equals(")")) {
+                break;
+            } else if (isNumber(token)) {
+                stack.push(token);
+            } else {
+                System.out.println("invalid token : " + token);
+            }
+        }
+
+        // reduce phase
+        String result = stack.pop();
+        while (!stack.peek().equals("")) {
+            String token = stack.pop();
+            if (!isOperator(token)) {
+                System.out.println("invalid token in reduce phase");
+                break;
+            }
+            String v = stack.pop();
+            result = String.format("%s %s %s", v, result, token);
+        }
+        return result;
+    }
 }

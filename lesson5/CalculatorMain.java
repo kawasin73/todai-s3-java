@@ -17,6 +17,12 @@ public class CalculatorMain {
 
                 Calculator calc = new Calculator();
 
+                // 中置記法の数式 を を逆ポーランド記法に変換する
+                // かっこ ( ) に対応するが、かっこはスペースで分ける必要あり。
+//                line = calc.convToF(line);
+
+                System.out.println(line);
+
                 // 中置記法の数式まで含める人は下記を使う
                  System.out.println(calc.getEquation(line) + " = " + calc.getAnswer(line));
 
