@@ -26,6 +26,10 @@
 
 スタックとキュー
 
+### lesson6
+
+多項式補間
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。
