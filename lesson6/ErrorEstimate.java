@@ -28,22 +28,6 @@ public class ErrorEstimate {
         }
     }
 
-    static double LagrangeCalc(double[] x, double[] f, double xint) {
-        // x[]: x座標   f[]: 関数値   xint: 補間点
-        double fint = 0.0;
-        for (int i = 0; i < x.length; i++) {
-            double l = 1.0;
-            for (int j = 0; j < x.length; j++) {
-                if (j == i) {
-                    continue;
-                }
-                l *= (xint - x[j]) / (x[i] - x[j]);
-            }
-            fint += (l * f[i]);
-        }
-        return fint;
-    }
-
     static double ErrorEstimateCalc(double h, double xi) {
         double x[] = new double[3];
         double f[] = new double[3];
@@ -53,7 +37,7 @@ public class ErrorEstimate {
         f[0] = Math.sin(-h);
         f[1] = Math.sin(0);
         f[2] = Math.sin(h);
-        return Math.sin(xi) - LagrangeCalc(x, f, xi);
+        return Math.sin(xi) - Lagrange.LagrangeCalc(x, f, xi);
     }
 
     static double MaxErrorEstimate(double h) {
