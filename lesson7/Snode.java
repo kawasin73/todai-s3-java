@@ -4,8 +4,8 @@ import java.util.*;
 public class Snode {
     private String data;//ノードのデータ要素
     private int count;//このデータが入力された回数
-    private Snode prev;//前のノード
-    private Snode next;//次のノード
+    private Snode prev = null;//前のノード
+    private Snode next = null;//次のノード
     
     public Snode(String x){
         // コンストラクタ
@@ -18,6 +18,7 @@ public class Snode {
     }
     public Snode getNext(){
         // ここに記述します
+        return next;
     }
     public void setPrev(Snode prev){
         // this.prevは7行目で定義したSnodeクラスのインスタンスが保持する変数
@@ -26,18 +27,23 @@ public class Snode {
     }
     public void setNext(Snode next){
         // ここに記述します
+        this.next = next;
     }
     public String getData(){
         // ここに記述します
+        return data;
     }
     public int getCount(){
         // ここに記述します
+        return count;
     }
     public void increaseCount(){
         // ここに記述します
+        count++;
     }
     public void decreaseCount(){
         // ここに記述します
+        count--;
     }
 
 }
