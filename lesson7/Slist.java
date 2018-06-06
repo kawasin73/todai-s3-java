@@ -62,7 +62,7 @@ public class Slist {
         Snode prev = foundNode.getPrev();
         Snode next = foundNode.getNext();
         if (prev == null) {
-            head = null;
+            head = next;
         } else {
             prev.setNext(next);
         }
@@ -89,11 +89,11 @@ public class Slist {
     }
 
     public void sort() {
-//        bubleSort();
+//        selectionSort();
         mergeSort();
     }
 
-    private void bubbleSort() {
+    private void selectionSort() {
         //getCount()の値が大きい順にノードの並び変えを行う
         int nodeNum = countNode();
         if (nodeNum < 2) {
