@@ -89,6 +89,11 @@ public class Slist {
     }
 
     public void sort() {
+//        bubleSort();
+        mergeSort();
+    }
+
+    private void bubbleSort() {
         //getCount()の値が大きい順にノードの並び変えを行う
         int nodeNum = countNode();
         if (nodeNum < 2) {
@@ -124,6 +129,74 @@ public class Slist {
                 nodes[i].setNext(nodes[i + 1]);
             }
         }
+    }
+
+    // Linked List Merge Sort
+    public void mergeSort() {
+        head = mSort(head);
+    }
+
+    private static Snode mSort(Snode n) {
+        // n.getPrev() must be null
+        // n.tail.getNext() must be null
+        if (n == null || n.getNext() == null) {
+            return n;
+        }
+        Snode middle = findMiddle(n);
+        Snode nextMiddle = middle.getNext();
+
+        middle.setNext(null);
+        n = mSort(n);
+        if (nextMiddle == null) {
+            n.setPrev(null);
+            return n;
+        }
+        nextMiddle.setPrev(null);
+        nextMiddle = mSort(nextMiddle);
+
+        Snode head = null;
+        Snode tail = null;
+
+        while (n != null && nextMiddle != null) {
+            Snode next;
+            if (n.getCount() > nextMiddle.getCount()) {
+                next = n;
+                n = n.getNext();
+            } else {
+                next = nextMiddle;
+                nextMiddle = nextMiddle.getNext();
+            }
+            if (head == null) {
+                head = tail = next;
+            } else {
+                tail.setNext(next);
+                next.setPrev(tail);
+                tail = next;
+            }
+        }
+        if (n == null) {
+            tail.setNext(nextMiddle);
+            nextMiddle.setPrev(tail);
+        } else {
+            tail.setNext(n);
+            n.setPrev(tail);
+        }
+        head.setPrev(null);
+        return head;
+    }
+
+    private static Snode findMiddle(Snode n) {
+        Snode faster = n.getNext();
+        Snode slower = n;
+
+        while(faster != null) {
+            faster = faster.getNext();
+            if (faster != null) {
+                faster = faster.getNext();
+                slower = slower.getNext();
+            }
+        }
+        return slower;
     }
 
 }
