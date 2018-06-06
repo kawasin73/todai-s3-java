@@ -30,6 +30,10 @@
 
 多項式補間
 
+### lesson7
+
+双方向連結リスト
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。
