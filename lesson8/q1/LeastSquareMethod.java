@@ -39,27 +39,20 @@ public class LeastSquareMethod {
 
     // double[] x, y, int n, dを使ってa[][]を求める
     public void solve() {
-        double[][] A = new double[n][];
+        double[][] A = new double[n][d];
 
         for (int i = 0; i < n; i++) {
-            A[i] = new double[d];
             for (int j = 0; j < d; j++) {
                 A[i][j] = Math.pow(x[i], j);
             }
         }
 
-        double[][] W = new double[d][];
-        for (int i = 0; i<d; i++) {
-            W[i] = new double[d+1];
-        }
+        double[][] W = new double[d][d+1];
 
         for (int i = 0; i < d; i++) {
             for (int j = 0; j < d; j++) {
                 W[i][j] = calcw(A, i, j);
             }
-        }
-
-        for (int i = 0; i < d; i++) {
             W[i][d] = calcy(A, i);
         }
 

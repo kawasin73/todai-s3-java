@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.*;
 
 public class LeastSquareMethodSin {
     private double[] x = new double[100];
@@ -45,19 +44,13 @@ public class LeastSquareMethodSin {
 
 
     public void solve() {
-        a = new double[3][];
-        a[0] = new double[4];
-        a[1] = new double[4];
-        a[2] = new double[4];
+        a = new double[3][4];
 
         for (int l = 1; true; l++) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     a[i][j] = calca(i, j);
                 }
-            }
-
-            for (int i = 0; i < 3; i++) {
                 a[i][3] = calcy(i);
             }
 
@@ -67,7 +60,7 @@ public class LeastSquareMethodSin {
             c1 += a[1][3];
             c2 += a[2][3];
 
-            for (int i = 0; i< 3; i++) {
+            for (int i = 0; i < 3; i++) {
                 System.out.println(String.format("delc%d:%f", i, a[i][3]));
             }
             System.out.println(String.format("c0:%f", c0));
@@ -84,7 +77,7 @@ public class LeastSquareMethodSin {
     private double calca(int i, int j) {
         double sum = 0.0;
         for (int k = 0; k < n; k++) {
-            sum += f(i, k) * f(j, k);
+            sum += diffF(i, x[k]) * diffF(j, x[k]);
         }
         return sum;
     }
@@ -92,22 +85,23 @@ public class LeastSquareMethodSin {
     private double calcy(int i) {
         double sum = 0.0;
         for (int k = 0; k < n; k++) {
-            sum += f(i, k) * (y[k] - c0 * Math.sin(c1 * x[k] + c2));
+            sum += diffF(i, x[k]) * (y[k] - c0 * Math.sin(c1 * x[k] + c2));
         }
         return sum;
     }
 
-    private double f(int c, int i) {
+    private double diffF(int c, double x) {
         switch (c) {
             case 0:
-                return Math.sin(c1 * x[i] + c2);
+                return Math.sin(c1 * x + c2);
             case 1:
-                return c0 * x[i] * Math.cos(c1 * x[i] + c2);
+                return c0 * x * Math.cos(c1 * x + c2);
             case 2:
-                return c0 * Math.cos(c1 * x[i] + c2);
+                return c0 * Math.cos(c1 * x + c2);
+            default:
+                System.out.println("invalid c : " + String.valueOf(c));
+                return 0;
         }
-        System.out.println("invalid c : " + String.valueOf(c));
-        return 0;
     }
 
     // aを出力する
