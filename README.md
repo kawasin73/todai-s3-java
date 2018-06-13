@@ -34,6 +34,10 @@
 
 双方向連結リスト
 
+### lesson8
+
+最小二乗法
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。
