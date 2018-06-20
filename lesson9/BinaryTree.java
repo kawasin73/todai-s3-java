@@ -6,18 +6,14 @@ public class BinaryTree {
     }
 
     public Node getMinNode() {
-
-        // ここにgetMinNodeの処理を書く
-        if (isEmpty()) {
+        if (root == null) {
             return null;
         }
         return root.getMinNode();
     }
 
     public Node getMaxNode() {
-
-        // ここにgetMaxNodeの処理を書く
-        if (isEmpty()) {
+        if (root == null) {
             return null;
         }
         return root.getMaxNode();
@@ -25,12 +21,11 @@ public class BinaryTree {
 
     public Node findNode(double value) {
         Node node = root;
-        // ここにfindNodeの処理を書く
         while (node != null) {
-            double nvalue = node.getValue();
-            if (value == nvalue) {
+            double nodeValue = node.getValue();
+            if (value == nodeValue) {
                 break;
-            } else if (value > nvalue) {
+            } else if (value > nodeValue) {
                 node = node.getRightNode();
             } else {
                 node = node.getLeftNode();
@@ -42,17 +37,17 @@ public class BinaryTree {
     public void insertNode(double value) {
         // ここにinsertNodeの処理を書く
         Node newNode = new Node(value);
-        if (isEmpty()) {
+        if (root == null) {
             root = newNode;
             return;
         }
         Node node = root;
         while (true) {
-            double nvalue = node.getValue();
-            if (value == nvalue) {
+            double nodeValue = node.getValue();
+            if (value == nodeValue) {
                 System.out.println(String.format("%f is already inserted", value));
                 break;
-            } else if (value > nvalue) {
+            } else if (value > nodeValue) {
                 if (node.getRightNode() == null) {
                     node.setRightNode(newNode);
                     newNode.setUpperNode(node);
@@ -76,19 +71,24 @@ public class BinaryTree {
         Node uNode = node.getUpperNode();
         Node lNode = node.getLeftNode();
         Node rNode = node.getRightNode();
-        Node nextNode;
         node.setUpperNode(null);
         node.setRightNode(null);
         node.setLeftNode(null);
+        Node nextNode;
         if (lNode == null && rNode == null) {
             nextNode = null;
         } else if (lNode != null && rNode != null) {
             nextNode = rNode.getMinNode();
-            nextNode.getUpperNode().setLeftNode(null);
+            // reconnect rNode only if minNode is not rNode itself
             if (nextNode != rNode) {
+                // disconnect minNode and its upperNode
+                nextNode.getUpperNode().setLeftNode(null);
+
+                // reconnect rNode
                 nextNode.setRightNode(rNode);
                 rNode.setUpperNode(nextNode);
             }
+            // reconnect lNode
             nextNode.setLeftNode(lNode);
             lNode.setUpperNode(nextNode);
         } else if (lNode == null) {
@@ -97,6 +97,7 @@ public class BinaryTree {
             // rNode == null
             nextNode = lNode;
         }
+        // reconnect nextNode and uNode
         if (nextNode != null) {
             nextNode.setUpperNode(uNode);
         }
