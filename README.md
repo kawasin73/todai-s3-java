@@ -38,6 +38,10 @@
 
 最小二乗法
 
+### lesson9
+
+二分探索木
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。

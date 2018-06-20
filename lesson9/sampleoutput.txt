@@ -1,0 +1,98 @@
+---- 確認1 ----
+command > insert 3
+insert 3
+command > insert 4
+insert 4
+command > insert 2
+insert 2
+command > print
+print 
+ ( 3.0 ( 2.0 ) ( 4.0 ) )
+command > remove 4
+remove 4
+command > print
+print 
+ ( 3.0 ( 2.0 ) ( null )  )
+command > insert 4
+insert 4
+command > insert 5
+insert 5
+command > print
+print 
+ ( 3.0 ( 2.0 ) ( 4.0 ( null )  ( 5.0 ) ) )
+command > find 4 
+find 4
+4.0 was found.
+command > find 0
+find 0
+0.0 was not found.
+command > remove 4
+remove 4
+command > print
+print 
+ ( 3.0 ( 2.0 ) ( 5.0 ) )
+command > remove 3
+remove 3
+command > print
+print 
+ ( 5.0 ( 2.0 ) ( null )  )
+command > insert 7
+insert 7
+command > insert 8
+insert 8
+command > remove 5
+remove 5
+command > print
+print 
+ ( 7.0 ( 2.0 ) ( 8.0 ) )
+command > remove 2
+remove 2
+command > print
+print 
+ ( 7.0 ( null )  ( 8.0 ) )
+command > remove 8
+remove 8
+command > print
+print 
+ ( 7.0 )
+command > remove 7
+remove 7
+command > print
+print 
+( null )
+command > quit
+quit
+
+--- 確認2 ---
+command > insert 10
+insert 10
+command > remove 20
+remove 20
+20.0 was not found.
+command > insert 3
+insert 3
+command > insert 15
+insert 15
+command > insert 18
+insert 18
+command > print
+print 
+ ( 10.0 ( 3.0 ) ( 15.0 ( null )  ( 18.0 ) ) )
+command > max
+max 
+Max = 18.0
+command > min
+min 
+Min = 3.0
+command > remove 10
+remove 10
+command > print
+print 
+ ( 15.0 ( 3.0 ) ( 18.0 ) )
+command > remove 15
+remove 15
+command > print
+print 
+ ( 18.0 ( 3.0 ) ( null )  )
+command > quit
+quit
