@@ -47,23 +47,56 @@ public class BinaryTreeMain {
 			} else if (command.equals("min")) {
 
 				// 最小値をプリントする処理を書く
-
+				Node node = tree.getMinNode();
+				if (node == null) {
+					System.out.println("No value stored");
+				} else {
+					System.out.println(String.format("Min = %f", node.getValue()));
+				}
 			} else if (command.equals("max")) {
 
 				// 最大値をプリントする処理を書く
-
+				Node node = tree.getMaxNode();
+				if (node == null) {
+					System.out.println("No value stored");
+				} else {
+					System.out.println(String.format("Max = %f", node.getValue()));
+				}
 			} else if (command.equals("find")) {
 
 				// 指定した値があるか調べる処理を書く
-
+				if (hasValue) {
+					Node node = tree.findNode(value);
+					if (node == null) {
+						System.out.println(String.format("%f was not found.", value));
+					} else {
+						System.out.println(String.format("%f was found.", node.getValue()));
+					}
+				} else {
+					System.out.println("No value error");
+				}
 			} else if (command.equals("insert")) {
 
 				// 値を挿入する処理を書く
+				if (hasValue) {
+					tree.insertNode(value);
+				} else {
+					System.out.println("No value error");
+				}
 
 			} else if (command.equals("remove")) {
 
 				// 値を削除する処理を書く
-
+				if (hasValue) {
+					Node node = tree.findNode(value);
+					if (node == null) {
+						System.out.println(String.format("%f was not found.", value));
+					} else {
+						tree.removeNode(node);
+					}
+				} else {
+					System.out.println("No value error");
+				}
 			} else if (command.equals("print")) {
 				tree.printTree();
 			} else {
