@@ -42,6 +42,10 @@
 
 二分探索木
 
+### lesson10
+
+数値微分と数値微分
+
 ## LICENSE
 
 僕が追記した部分については [WTFPL](http://www.wtfpl.net/) とします。
